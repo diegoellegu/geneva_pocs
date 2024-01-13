@@ -1,0 +1,26 @@
+<!-- personas/templates/crear_persona.html -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Persona</title>
+</head>
+<body>
+    <h2>Crear Persona</h2>
+
+    <form method="post" action="{% url 'crear_persona' %}">
+        {% csrf_token %}
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" required>
+
+        <label for="edad">Edad:</label>
+        <input type="number" name="edad" required>
+
+        <button type="submit">Crear Persona</button>
+    </form>
+
+    <a href="{% url 'listar_personas' %}">Listar Personas</a>
+</body>
+</html>

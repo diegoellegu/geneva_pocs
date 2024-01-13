@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_DB: nombre_de_tu_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: contraseña
+    ports:
+      - "5432:5432"
+
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_DATABASE: geneva
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+      MYSQL_ROOT_PASSWORD: mysql
+    ports:
+      - "3306:3306"
+
+  web:
+    image: geneva
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mysql
