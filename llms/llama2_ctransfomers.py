@@ -26,9 +26,11 @@ output_text = llm("Que es la inteligenia artifical generativa?")
 
 end_time = time.time()  # Registra el tiempo de finalización
 elapsed_time = end_time - start_time  # Calcula el tiempo transcurrido
+# Imprimir el texto generado
+print(output_text)
+
 print(f"Tiempo de ejecución: {elapsed_time:.2f} segundos")
 
 
-# Imprimir el texto generado
-print(output_text)
+
 

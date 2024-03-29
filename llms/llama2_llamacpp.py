@@ -9,6 +9,7 @@ from langchain_community.llms import LlamaCpp
 
 # Ruta al modelo LlamaCpp
 model_name = "/home/dparrilla/development/modelos/llama-2-7b-chat.Q4_K_M.gguf"
+print("Modelo: ", model_name)
 
 # Plantilla de prompt con una estructura específica
 template = """Question: {question}
@@ -22,15 +23,16 @@ prompt = PromptTemplate(template=template, input_variables=["question"])
 callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
 
 # Creación de una instancia del modelo de lenguaje LlamaCpp
-# Creación de una instancia del modelo de lenguaje LlamaCpp
 llm = LlamaCpp(
     model_path=model_name,            # Ruta al modelo LlamaCpp
     temperature=0.75,                 # Controla la aleatoriedad de las predicciones (0.75 es un valor común)
-    max_tokens=2000,                  # Límite máximo de tokens para la generación de texto
+    max_tokens=100,                  # Límite máximo de tokens para la generación de texto
     top_p=1,                           # Umbral acumulativo para el top-p sampling (1 significa que se consideran todas las predicciones)
     callback_manager=callback_manager, # Objeto CallbackManager para gestionar callbacks durante la generación de texto
-    verbose=True,                      # Modo detallado activado (necesario para pasar al callback manager)
+    verbose=False# Modo detallado activado (necesario para pasar al callback manager)
 )
+
+
 
 # Definición de un prompt específico
 prompt_text = """
@@ -41,5 +43,6 @@ start_time = time.time()  # Registra el tiempo de inicio
 llm(prompt_text)
 end_time = time.time()  # Registra el tiempo de finalización
 elapsed_time = end_time - start_time  # Calcula el tiempo transcurrido
-print(f"Tiempo de ejecución: {elapsed_time:.2f} segundos")
+print()
+print(F"Tiempo de ejecución: {elapsed_time:.2f} segundos")
 

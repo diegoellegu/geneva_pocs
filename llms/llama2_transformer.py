@@ -5,15 +5,18 @@ import time
 
 # Importa las clases necesarias de la biblioteca Transformers
 from transformers import AutoTokenizer, LlamaForCausalLM
+from huggingface_hub import login
 import transformers  # Importa el módulo transformers
 import torch  # Importa la biblioteca PyTorch para trabajar con tensores
 
 # Define el identificador del modelo
 model_id = "meta-llama/Llama-2-7b-chat-hf"
+print("Modelo: ", model_id)
+#login()
 
 # Carga el tokenizador preentrenado asociado al modelo
 tokenizer = AutoTokenizer.from_pretrained(model_id)
-print("Token iniciado")
+print("Tokenizador iniciado")
 
 # Crea un pipeline para generación de texto utilizando el modelo especificado
 pipeline = transformers.pipeline(
